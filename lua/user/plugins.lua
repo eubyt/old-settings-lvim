@@ -108,6 +108,21 @@ M.config = function()
             require("user.sidebar").config()
         end,
         disable = not lvim.builtin.sidebar.active
+    }, {
+        "ThePrimeagen/refactoring.nvim",
+        ft = {"typescript", "javascript", "lua", "c", "cpp", "go", "python", "java", "php"},
+        event = "BufRead",
+        config = function()
+            require("refactoring").setup {}
+        end,
+        disable = not lvim.builtin.refactoring.active
+    }, {
+        "simrat39/symbols-outline.nvim",
+        config = function()
+            require("user.symbols_outline").config()
+        end,
+        event = "BufReadPost",
+        disable = lvim.builtin.tag_provider ~= "symbols-outline"
     }}
 end
 

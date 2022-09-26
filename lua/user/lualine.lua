@@ -1,10 +1,6 @@
 local M = {}
 local kind = require "user.lsp_kind"
 
-local function clock()
-    return kind.icons.clock .. os.date "%H:%M"
-end
-
 local function diff_source()
     local gitsigns = vim.b.gitsigns_status_dict
     if gitsigns then
@@ -112,7 +108,7 @@ end
 
 M.config = function()
     local _time = os.date "*t"
-    local colors = require("user.theme").current_colors()
+    local colors = require("user.theme").colors
 
     -- Color table for highlights
     local mode_color = {
@@ -361,18 +357,6 @@ M.config = function()
 
     ins_left {
         function()
-            local utils = require "lvim.core.lualine.utils"
-            if vim.bo.filetype == "python" then
-                local venv = os.getenv "CONDA_DEFAULT_ENV"
-                if venv then
-                    return string.format("  (%s)", utils.env_cleanup(venv))
-                end
-                venv = os.getenv "VIRTUAL_ENV"
-                if venv then
-                    return string.format("  (%s)", utils.env_cleanup(venv))
-                end
-                return ""
-            end
             return ""
         end,
         color = {
@@ -503,7 +487,7 @@ M.config = function()
             vim.list_extend(buf_client_names, supported_linters)
 
             if conditions.hide_small() then
-                return table.concat(buf_client_names, ", ")
+                return "[" .. table.concat(buf_client_names, ", ") .. "]"
             elseif conditions.hide_in_width() then
                 return only_lsp
             else
@@ -566,15 +550,6 @@ M.config = function()
         cond = conditions.hide_small
     })
 
-    table.insert(config.sections.lualine_y, {
-        clock,
-        cond = conditions.hide_small,
-        color = {
-            fg = colors.blue,
-            bg = lvim.transparent_window and "NONE" or colors.bg
-        }
-    })
-
     table.insert(config.sections.lualine_z, {
         function()
             local current_line = vim.fn.line "."
@@ -582,7 +557,7 @@ M.config = function()
             local chars = {"__", "▁▁", "▂▂", "▃▃", "▄▄", "▅▅", "▆▆", "▇▇", "██"}
             local line_ratio = current_line / total_lines
             local index = math.ceil(line_ratio * #chars)
-            return chars[index]
+            return " " .. chars[index]
         end,
         padding = 0,
         color = {
