@@ -1,5 +1,24 @@
 local M = {}
 
+M.vscode = function()
+    local c = require('vscode.colors')
+    require('vscode').setup({
+        transparent = lvim.transparent_window,
+        italic_comments = true,
+        disable_nvimtree_bg = true,
+        color_overrides = {
+            vscLineNumber = '#FFFFFF'
+        },
+        group_overrides = {
+            Cursor = {
+                fg = c.vscDarkBlue,
+                bg = c.vscLightGreen,
+                bold = true
+            }
+        }
+    })
+end
+
 M.catppuccin = function()
     local catppuccin = require "catppuccin"
     local opts = {

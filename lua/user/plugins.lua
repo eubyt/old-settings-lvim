@@ -1,7 +1,16 @@
 local M = {}
 
 M.config = function()
-    lvim.plugins = {{"folke/tokyonight.nvim"}, {
+    lvim.plugins = {{
+        "Mofiqul/vscode.nvim",
+        config = function()
+            require("user.theme").vscode()
+            vim.cmd [[colorscheme vscode]]
+        end,
+        cond = function()
+            return lvim.colorscheme == "vscode"
+        end
+    }, {
         "catppuccin/nvim",
         as = "catppuccin",
         setup = function()
@@ -10,6 +19,9 @@ M.config = function()
         config = function()
             require("user.theme").catppuccin()
             vim.cmd [[colorscheme catppuccin]]
+        end,
+        cond = function()
+            return lvim.colorscheme == "catppuccin"
         end
     }, {
         "ray-x/lsp_signature.nvim",
@@ -126,6 +138,12 @@ M.config = function()
     }, {
         "p00f/nvim-ts-rainbow",
         disable = not lvim.builtin.parentheses_rainbow.active
+    }, {
+        "j-hui/fidget.nvim",
+        config = function()
+            require("user.fidget_spinner").config()
+        end,
+        disable = not lvim.builtin.fidget.active
     }}
 end
 
