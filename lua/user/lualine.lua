@@ -503,7 +503,7 @@ M.config = function()
             vim.list_extend(buf_client_names, supported_linters)
 
             if conditions.hide_small() then
-                return kind.icons.ls_active .. " " .. table.concat(buf_client_names, ", ")
+                return table.concat(buf_client_names, ", ")
             elseif conditions.hide_in_width() then
                 return only_lsp
             else

@@ -1,18 +1,7 @@
 local M = {}
 
 M.config = function()
-    lvim.plugins = {{
-        "rose-pine/neovim",
-        as = "rose-pine",
-        config = function()
-            require("user.theme").rose_pine()
-            vim.cmd [[colorscheme rose-pine]]
-        end,
-        cond = function()
-            local _time = os.date "*t"
-            return (_time.hour >= 1 and _time.hour < 9) and lvim.builtin.time_based_themes
-        end
-    }, {
+    lvim.plugins = {{"folke/tokyonight.nvim"}, {
         "catppuccin/nvim",
         as = "catppuccin",
         setup = function()
@@ -21,21 +10,6 @@ M.config = function()
         config = function()
             require("user.theme").catppuccin()
             vim.cmd [[colorscheme catppuccin]]
-        end,
-        cond = function()
-            local _time = os.date "*t"
-            return (_time.hour >= 17 and _time.hour < 21) and lvim.builtin.time_based_themes
-        end
-    }, {
-        "rebelot/kanagawa.nvim",
-        config = function()
-            require("user.theme").kanagawa()
-            vim.cmd [[colorscheme kanagawa]]
-        end,
-        cond = function()
-            local _time = os.date "*t"
-            return ((_time.hour >= 21 and _time.hour < 24) or (_time.hour >= 0 and _time.hour < 1)) and
-                       lvim.builtin.time_based_themes
         end
     }, {
         "ray-x/lsp_signature.nvim",
@@ -88,6 +62,52 @@ M.config = function()
         "editorconfig/editorconfig-vim",
         event = "BufRead",
         disable = not lvim.builtin.editorconfig.active
+    }, {
+        "yamatsum/nvim-cursorline",
+        opt = true,
+        event = "BufWinEnter",
+        disable = not lvim.builtin.cursorline.active
+    }, {
+        "karb94/neoscroll.nvim",
+        config = function()
+            require("neoscroll").setup {
+                easing_function = "quadratic",
+                hide_cursor = true
+            }
+        end,
+        event = "BufRead",
+        disable = lvim.builtin.smooth_scroll ~= "neoscroll"
+    }, {
+        "nathom/filetype.nvim",
+        config = function()
+            require("user.filetype").config()
+        end
+    }, {
+        "skywind3000/asynctasks.vim",
+        requires = {{"skywind3000/asyncrun.vim"}},
+        setup = function()
+            vim.cmd [[
+            let g:asyncrun_open = 8
+            let g:asynctask_template = '~/.config/lvim/task_template.ini'
+            let g:asynctasks_extra_config = ['~/.config/lvim/tasks.ini']
+          ]]
+        end,
+        event = "BufRead",
+        disable = lvim.builtin.task_runner ~= "async_tasks"
+    }, {
+        "nvim-neo-tree/neo-tree.nvim",
+        branch = "v2.x",
+        requires = {"MunifTanjim/nui.nvim"},
+        config = function()
+            require("user.neotree").config()
+        end,
+        disable = lvim.builtin.tree_provider ~= "neo-tree"
+    }, {
+        "sidebar-nvim/sidebar.nvim",
+        config = function()
+            require("user.sidebar").config()
+        end,
+        disable = not lvim.builtin.sidebar.active
     }}
 end
 

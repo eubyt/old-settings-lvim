@@ -58,8 +58,7 @@ M.config = function()
             return utils.root_has_file ".semgrepignore" and use_semgrep
         end,
         extra_args = {"--metrics", "off", "--exclude", "vendor", "--config", semgrep_rule_folder}
-    }, nls.builtins.diagnostics.shellcheck, nls.builtins.diagnostics.luacheck, nls.builtins.diagnostics.vint,
-    nls.builtins.diagnostics.chktex, -- Support for nix files
+    }, nls.builtins.diagnostics.luacheck, nls.builtins.diagnostics.vint, nls.builtins.diagnostics.chktex, -- Support for nix files
     nls.builtins.diagnostics.deadnix, nls.builtins.diagnostics.statix, nls.builtins.diagnostics.markdownlint.with {
         filetypes = {"markdown"}
     }, nls.builtins.diagnostics.vale.with {
@@ -72,7 +71,7 @@ M.config = function()
         condition = function(utils)
             return utils.root_has_file ".golangci.yml"
         end
-    }, nls.builtins.code_actions.shellcheck, nls.builtins.code_actions.eslint_d.with {
+    }, nls.builtins.code_actions.eslint_d.with {
         condition = function(utils)
             return utils.root_has_file {eslintrc}
         end,

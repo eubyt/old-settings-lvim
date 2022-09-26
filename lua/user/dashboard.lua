@@ -45,9 +45,10 @@ M.config = function()
     }
 
     local fortune = require "alpha.fortune"()
+    local useAlphaFortune = math.random(1, 100) < 90
     local footer = {
         type = "text",
-        val = fortune,
+        val = useAlphaFortune and fortune or require("user.fortune").txt(),
         opts = {
             position = "center",
             hl = "Comment",
