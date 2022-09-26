@@ -5,10 +5,6 @@ M.config = function()
         "Mofiqul/vscode.nvim",
         config = function()
             require("user.theme").vscode()
-            vim.cmd [[colorscheme vscode]]
-        end,
-        cond = function()
-            return lvim.colorscheme == "vscode"
         end
     }, {
         "catppuccin/nvim",
@@ -18,10 +14,6 @@ M.config = function()
         end,
         config = function()
             require("user.theme").catppuccin()
-            vim.cmd [[colorscheme catppuccin]]
-        end,
-        cond = function()
-            return lvim.colorscheme == "catppuccin"
         end
     }, {
         "ray-x/lsp_signature.nvim",

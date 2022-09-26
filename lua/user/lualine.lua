@@ -163,7 +163,7 @@ M.config = function()
                 left = "",
                 right = ""
             },
-            theme = "auto",
+            theme = lvim.builtin.lualine_theme,
             disabled_filetypes = {"dashboard", "NvimTree", "neo-tree", "Outline", "alpha", "vista", "vista_kind",
                                   "TelescopePrompt"},
             always_divide_middle = false,

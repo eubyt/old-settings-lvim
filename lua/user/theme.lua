@@ -7,7 +7,8 @@ M.vscode = function()
         italic_comments = true,
         disable_nvimtree_bg = true,
         color_overrides = {
-            vscLineNumber = '#FFFFFF'
+            vscLineNumber = '#FFFFFF',
+            vscBack = 'none'
         },
         group_overrides = {
             Cursor = {

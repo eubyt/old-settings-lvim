@@ -1,3 +1,5 @@
+local user = os.getenv "USER"
+
 lvim.log.level = "warn"
 lvim.format_on_save = true
 lvim.colorscheme = "vscode"
@@ -14,6 +16,7 @@ lvim.builtin.global_statusline = true
 lvim.builtin.task_runner = "async_tasks"
 lvim.builtin.tree_provider = "nvimtree" -- can be "neo-tree" or "nvimtree" or ""
 lvim.builtin.tag_provider = "symbols-outline" -- change this to use different tag providers ( symbols-outline or vista )
+lvim.builtin.lualine_theme = "catppuccin"
 
 lvim.builtin.custom_statusline = {
     active = true
@@ -53,18 +56,21 @@ lvim.builtin.treesitter.ensure_installed = {"bash", "c", "javascript", "json", "
 lvim.builtin.treesitter.ignore_install = {"haskell"}
 lvim.builtin.treesitter.highlight.enabled = true
 
-local user = os.getenv "USER"
+--- Minhas configurações
 if user and user == "eubyt" then
     lvim.transparent_window = true
-    lvim.colorscheme = "catppuccin"
-end
-
-if lvim.builtin.custom_statusline.active then
-    require("user.lualine").config()
+    lvim.builtin.fidget.active = false
+    vim.schedule(function()
+        vim.cmd [[colorscheme catppuccin]]
+    end)
 end
 
 require("user.builtin").config()
 require("user.null_ls").config()
 require("user.plugins").config()
 require("user.keybindings").config()
+
+if lvim.builtin.custom_statusline.active then
+    require("user.lualine").config()
+end
 
