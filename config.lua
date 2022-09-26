@@ -41,6 +41,9 @@ lvim.builtin.cursorline = {
 lvim.builtin.refactoring = {
     active = true
 }
+lvim.builtin.parentheses_rainbow = {
+    active = true
+}
 
 lvim.builtin.smooth_scroll = "cinnamon"
 
@@ -57,6 +60,7 @@ end
 if lvim.builtin.custom_statusline.active then
     require("user.lualine").config()
 end
+
 require("user.null_ls").config()
 require("user.plugins").config()
 require("user.keybindings").config()

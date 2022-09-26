@@ -43,12 +43,6 @@ M.config = function()
         end,
         disable = not lvim.builtin.persistence.active
     }, {
-        "folke/zen-mode.nvim",
-        config = function()
-            require("user.zen").config()
-        end,
-        event = "BufRead"
-    }, {
         "norcalli/nvim-colorizer.lua",
         config = function()
             require("user.colorizer").config()
@@ -123,6 +117,15 @@ M.config = function()
         end,
         event = "BufReadPost",
         disable = lvim.builtin.tag_provider ~= "symbols-outline"
+    }, {
+        "kevinhwang91/nvim-bqf",
+        config = function()
+            require("user.bqf").config()
+        end,
+        event = "BufRead"
+    }, {
+        "p00f/nvim-ts-rainbow",
+        disable = not lvim.builtin.parentheses_rainbow.active
     }}
 end
 
