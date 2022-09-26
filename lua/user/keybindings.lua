@@ -7,7 +7,6 @@ M.config = function()
 
     lvim.keys.insert_mode["<C-z>"] = "<C-o>u"
     lvim.keys.insert_mode["<C-q>"] = ":q<cr>"
-    lvim.keys.insert_mode["<C-c>"] = "+y"
     lvim.keys.insert_mode["<C-v>"] = "<C-R>+"
     lvim.keys.insert_mode["<C-x>"] = "+x"
 
