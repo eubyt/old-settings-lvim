@@ -29,8 +29,8 @@ M.config = function()
             task_decay = 300 -- how long to keep around completed task, in ms
         },
         window = {
-            relative = "win", -- where to anchor the window, either `"win"` or `"editor"`
-            blend = 10, -- `&winblend` for the window
+            relative = "editor", -- where to anchor the window, either `"win"` or `"editor"`
+            blend = 60, -- `&winblend` for the window
             zindex = nil -- the `zindex` value for the window
         },
         fmt = {

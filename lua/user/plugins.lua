@@ -136,6 +136,13 @@ M.config = function()
             require("user.fidget_spinner").config()
         end,
         disable = not lvim.builtin.fidget.active
+    }, {
+        "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+        config = function()
+            require("lsp_lines").setup()
+        end,
+        event = "BufRead",
+        disable = not lvim.builtin.lsp_lines
     }}
 end
 

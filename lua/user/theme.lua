@@ -2,13 +2,14 @@ local M = {}
 
 M.vscode = function()
     local c = require('vscode.colors')
-    require('vscode').setup({
+    local opts = {
         transparent = lvim.transparent_window,
         italic_comments = true,
         disable_nvimtree_bg = true,
         color_overrides = {
             vscLineNumber = '#FFFFFF',
-            vscBack = 'none'
+            vscBack = 'none',
+            vscPopupBack = "NONE"
         },
         group_overrides = {
             Cursor = {
@@ -17,7 +18,8 @@ M.vscode = function()
                 bold = true
             }
         }
-    })
+    }
+    require('vscode').setup(opts)
 end
 
 M.catppuccin = function()
@@ -30,7 +32,7 @@ M.catppuccin = function()
             keywords = {"italic"}
         },
         compile = {
-            enabled = true, -- NOTE: make sure to run `:CatppuccinCompile`
+            enabled = true,
             path = vim.fn.stdpath "cache" .. "/catppuccin"
         },
         dim_inactive = {
@@ -77,10 +79,46 @@ M.catppuccin = function()
             hop = lvim.builtin.motion_provider == "hop"
         },
         highlight_overrides = {
+            -- NOTE: make sure to run `:CatppuccinCompile`
             mocha = {
+                ErrorMsg = {
+                    style = {"bold"}
+                },
+                DiagnosticVirtualTextError = {
+                    style = {}
+                },
+                DiagnosticError = {
+                    style = {}
+                },
+                DiagnosticWarn = {
+                    style = {}
+                },
+                LspDiagnosticsVirtualTextError = {
+                    style = {}
+                },
                 NormalFloat = {
-                    fg = "#CDD6F4",
-                    bg = "#151521"
+                    bg = "NONE"
+                },
+                Normal = {
+                    bg = "NONE"
+                },
+                StatusLine = {
+                    bg = "NONE"
+                },
+                VertSplit = {
+                    bg = "NONE"
+                },
+                WhichKeyFloat = {
+                    bg = "NONE"
+                },
+                NvimTreeNormal = {
+                    bg = "NONE"
+                },
+                NvimTreeVertSplit = {
+                    bg = "NONE"
+                },
+                NvimTreeStatuslineNc = {
+                    bg = "NONE"
                 }
             }
         }
@@ -99,7 +137,7 @@ M.catppuccin = function()
                 bg = colors.none
             },
             CursorLineNr = {
-                fg = colors.lavender
+                fg = colors.sky
             },
             DiagnosticVirtualTextError = {
                 bg = colors.none
@@ -111,6 +149,18 @@ M.catppuccin = function()
                 bg = colors.none
             },
             DiagnosticVirtualTextHint = {
+                bg = colors.none
+            },
+            DiagnosticError = {
+                bg = colors.none
+            },
+            DiagnosticInfo = {
+                bg = colors.none
+            },
+            DiagnosticHint = {
+                bg = colors.none
+            },
+            DiagnosticWarn = {
                 bg = colors.none
             }
         }

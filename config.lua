@@ -48,13 +48,16 @@ lvim.builtin.parentheses_rainbow = {
 lvim.builtin.fidget = {
     active = true
 }
-
 lvim.builtin.smooth_scroll = "cinnamon"
-
 lvim.builtin.treesitter.ensure_installed = {"bash", "c", "javascript", "json", "lua", "python", "typescript", "tsx",
                                             "css", "rust", "java", "yaml"}
 lvim.builtin.treesitter.ignore_install = {"haskell"}
 lvim.builtin.treesitter.highlight.enabled = true
+lvim.builtin.lsp_lines = true
+
+if lvim.builtin.lsp_lines then
+    lvim.lsp.diagnostics.virtual_text = false
+end
 
 --- Minhas configurações
 if user and user == "eubyt" then
