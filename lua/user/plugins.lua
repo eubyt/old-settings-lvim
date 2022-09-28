@@ -143,6 +143,36 @@ M.config = function()
         end,
         event = "BufRead",
         disable = not lvim.builtin.lsp_lines
+    }, {
+        "tzachar/cmp-tabnine",
+        run = "./install.sh",
+        requires = "hrsh7th/nvim-cmp",
+        config = function()
+            local tabnine = require "cmp_tabnine.config"
+            tabnine:setup{
+                max_lines = 1000,
+                max_num_results = 10,
+                sort = true
+            }
+        end,
+        opt = true,
+        event = "InsertEnter",
+        disable = not lvim.builtin.tabnine.active
+    }, {
+        'wfxr/minimap.vim',
+        run = "cargo install --locked code-minimap",
+        config = function()
+            vim.cmd("let g:minimap_width = 10")
+            vim.cmd("let g:minimap_auto_start = 0")
+            vim.cmd("let g:minimap_auto_start_win_enter = 0")
+        end,
+        disable = not lvim.builtin.minimap.active
+    }, {
+        "andweeb/presence.nvim",
+        config = function()
+            require("user.discord_presence").config()
+        end,
+        disable = not lvim.builtin.discord_presence.active
     }}
 end
 

@@ -502,10 +502,10 @@ M.config = function()
     }
 
     ins_right {
-        "location",
+        "encoding",
         padding = 0,
         color = {
-            fg = colors.orange,
+            fg = colors.fg,
             bg = lvim.transparent_window and "NONE" or colors.bg
         }
     }
@@ -538,6 +538,7 @@ M.config = function()
         },
         cond = conditions.buffer_not_empty and conditions.hide_small
     }
+
     table.insert(config.sections.lualine_y, {
         "fileformat",
         fmt = string.upper,

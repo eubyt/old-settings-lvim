@@ -18,6 +18,9 @@ lvim.builtin.tree_provider = "nvimtree" -- can be "neo-tree" or "nvimtree" or ""
 lvim.builtin.tag_provider = "symbols-outline" -- change this to use different tag providers ( symbols-outline or vista )
 lvim.builtin.lualine_theme = "catppuccin"
 
+lvim.builtin.tabnine = {
+    active = false
+}
 lvim.builtin.custom_statusline = {
     active = true
 }
@@ -48,6 +51,13 @@ lvim.builtin.parentheses_rainbow = {
 lvim.builtin.fidget = {
     active = true
 }
+lvim.builtin.minimap = {
+    active = true
+}
+lvim.builtin.discord_presence = {
+    active = false
+}
+
 lvim.builtin.smooth_scroll = "cinnamon"
 lvim.builtin.treesitter.ensure_installed = {"bash", "c", "javascript", "json", "lua", "python", "typescript", "tsx",
                                             "css", "rust", "java", "yaml"}
@@ -61,10 +71,14 @@ end
 
 --- Minhas configurações
 if user and user == "eubyt" then
+
+    lvim.builtin.discord_presence.active = true
     lvim.transparent_window = true
     lvim.builtin.fidget.active = false
+    lvim.builtin.minimap.active = false
+
     vim.schedule(function()
-        vim.cmd [[colorscheme catppuccin]]
+        vim.cmd("colorscheme catppuccin")
     end)
 end
 
@@ -72,6 +86,7 @@ require("user.builtin").config()
 require("user.null_ls").config()
 require("user.plugins").config()
 require("user.keybindings").config()
+require("user.autocommands").config()
 
 if lvim.builtin.custom_statusline.active then
     require("user.lualine").config()

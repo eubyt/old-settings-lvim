@@ -13,12 +13,11 @@ M.config = function()
         table.insert(sources, source)
     end
 
-    local setup_code_actions = require("lvim.lsp.null-ls.code_actions").setup
-    local refactorin_opts = nls.builtins.code_actions.refactoring.with {
-        filetypes = {"typescript", "javascript", "lua", "c", "cpp", "go", "python", "java", "php"}
-    }
-
-    setup_code_actions {refactorin_opts}
+    if lvim.builtin.refactoring.active then
+        table.insert(sources, nls.builtins.code_actions.refactoring.with {
+            filetypes = {"typescript", "javascript", "lua", "c", "cpp", "go", "python", "java", "php"}
+        })
+    end
 
     nls.setup {
         on_attach = require("lvim.lsp").common_on_attach,
