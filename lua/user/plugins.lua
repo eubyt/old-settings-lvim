@@ -173,6 +173,12 @@ M.config = function()
             require("user.discord_presence").config()
         end,
         disable = not lvim.builtin.discord_presence.active
+    }, {
+        "lukas-reineke/indent-blankline.nvim",
+        config = function()
+            require("user.indent_blankline").config()
+        end,
+        event = "BufRead"
     }}
 end
 

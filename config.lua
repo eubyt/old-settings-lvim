@@ -64,6 +64,9 @@ lvim.builtin.treesitter.ensure_installed = {"bash", "c", "javascript", "json", "
 lvim.builtin.treesitter.ignore_install = {"haskell"}
 lvim.builtin.treesitter.highlight.enabled = true
 lvim.builtin.lsp_lines = true
+lvim.format_on_save = {
+    timeout = 30000
+}
 
 if lvim.builtin.lsp_lines then
     lvim.lsp.diagnostics.virtual_text = false
@@ -90,5 +93,6 @@ require("user.autocommands").config()
 
 if lvim.builtin.custom_statusline.active then
     require("user.lualine").config()
+    require("user.bufferline").config()
 end
 
