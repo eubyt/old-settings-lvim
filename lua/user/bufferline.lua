@@ -10,14 +10,12 @@ M.config = function()
             bold = true
         }
     }
-    if lvim.builtin.time_based_themes then
-        lvim.builtin.bufferline.highlights.fill = {
-            bg = {
-                attribute = "bg",
-                highlight = "NormalNC"
-            }
+    lvim.builtin.bufferline.highlights.fill = {
+        bg = {
+            attribute = "bg",
+            highlight = "NormalNC"
         }
-    end
+    }
     local g_ok, bufferline_groups = pcall(require, "bufferline.groups")
     if not g_ok then
         bufferline_groups = {
@@ -192,8 +190,8 @@ M.config = function()
         show_close_icon = false,
         -- indicator = { style = "bold" },
         indicator = {
-            icon = "▎", -- this should be omitted if indicator style is not 'icon'
-            style = "icon" -- can also be 'underline'|'none',
+            icon = "", -- this should be omitted if indicator style is not 'icon'
+            style = "none" -- can also be 'underline'|'none',
         },
         max_name_length = 18,
         max_prefix_length = 15, -- prefix used when a buffer is de-duplicated

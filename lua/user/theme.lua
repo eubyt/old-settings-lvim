@@ -9,7 +9,8 @@ M.vscode = function()
         color_overrides = {
             vscLineNumber = '#FFFFFF',
             vscBack = 'none',
-            vscPopupBack = "NONE"
+            vscPopupBack = "NONE",
+            vscLeftDark = 'NONE'
         },
         group_overrides = {
             Cursor = {

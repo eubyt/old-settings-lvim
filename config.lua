@@ -80,9 +80,9 @@ if user and user == "eubyt" then
     lvim.builtin.fidget.active = false
     lvim.builtin.minimap.active = false
 
-    vim.schedule(function()
-        vim.cmd("colorscheme catppuccin")
-    end)
+    -- vim.schedule(function()
+    --     vim.cmd("colorscheme catppuccin")
+    -- end)
 end
 
 require("user.builtin").config()
